@@ -1,0 +1,9 @@
+.DS_Store
+__pycache__/
+*.pyc
+.env
+config.py
+private
+venv
+pg-venv
+services/predict_detect/*.pth
