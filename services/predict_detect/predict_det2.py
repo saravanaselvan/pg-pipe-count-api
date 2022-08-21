@@ -26,6 +26,7 @@ LOGGER.addHandler(HANDLER)
 ##########
 def _load_from_bytearray(request_body: BinaryIO) -> np.ndarray:
     npimg = np.frombuffer(request_body, np.uint8)
+    print("LOAD FROM BYTEARRAY", npimg)
     return cv2.imdecode(npimg, cv2.IMREAD_COLOR)
 
 

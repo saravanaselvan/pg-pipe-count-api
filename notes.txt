@@ -1,26 +1,23 @@
-git clone https://github.com/saravanaselvan/pg-video-convertor-api.git
+git clone https://github.com/saravanaselvan/pg-pipe-count-api.git
 
-cd pg-video-convertor-api
+cd pg-pipe-count-api
 - create .env and config.py file inside /home/ubuntu/private directory
+- copy model_final.pth to /home/ubuntu/private directory
 - Update RDS url in both the files
 
-ln -s /home/ubuntu/private/.env /home/ubuntu/app/pg-video-convertor-api/.env
-ln -s /home/ubuntu/private/config.py /home/ubuntu/app/pg-video-convertor-api/config.py
+ln -s /home/ubuntu/private/.env /home/ubuntu/app/pg-pipe-count-api/.env
+ln -s /home/ubuntu/private/config.py /home/ubuntu/app/pg-pipe-count-api/config.py
+ln -s /home/ubuntu/private/model_final.pth /home/ubuntu/app/pg-pipe-count-api/services/predict_detect/model_final.pth
 
 sudo apt update (without this the next command errors with not found)
 sudo apt install python3-pip
 sudo apt-get update
 sudo apt-get install python3-venv
-sudo apt install supervisor
 python3 -m venv pg-venv
 . pg-venv/bin/activate
 python3 -m pip install -r requirements.txt
 
 sudo apt-get install nginx &&
-sudo apt-get install gunicorn &&
-sudo apt install ffmpeg &&
-sudo apt-get install wkhtmltopdf &&
-sudo apt install libimage-exiftool-perl &&
 sudo apt-get install rabbitmq-server -y --fix-missing
 
 sudo rabbitmq-server - Start server
@@ -29,8 +26,9 @@ sudo rabbitmqctl stop
 
 Run Worker inside the project folder with pg-venv:
 celery -A app.celery  worker -f ~/private/celery.log --loglevel=info
+celery -A app.celery  worker -f --loglevel=info
 
-Create pg-video-conversion in /etc/nginx/sites-enabled with below content:
+Create pg-pipe-count in /etc/nginx/sites-enabled with below content:
 
 server {
 	listen 80;
