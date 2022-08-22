@@ -17,6 +17,7 @@ class PipeModel(db.Model):
     uploaded_file_name = db.Column(db.String(255))
     output_file_name = db.Column(db.String(255))
     output_file_path = db.Column(db.String(255))
+    pipe_count = db.Column(db.Integer)
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
 
@@ -45,6 +46,7 @@ class PipeModel(db.Model):
             'uploaded_file_name': self.uploaded_file_name,
             'output_file_name': self.output_file_name,
             'output_file_path': self.output_file_path,
+            'pipe_count': self.pipe_count,
             'created_at': str(self.created_at)
         }
 
