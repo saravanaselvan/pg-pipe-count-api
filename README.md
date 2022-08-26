@@ -16,6 +16,8 @@ mkdir private/uploads
 
 mkdir private/output_files
 
+Copy **model_final.pth** file to **services/predict_detect** folder. This is the trained pyTorch model to detect pipes from the uploaded picture.
+
 touch private/celery.log
 
 # Configuration files:
